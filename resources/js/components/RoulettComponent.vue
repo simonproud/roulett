@@ -13,8 +13,8 @@
                 </div>
             </div>
         </div>
-        <b-modal id="modal1" title="BootstrapVue">
-            <p class="my-4">Hello from modal!</p>
+        <b-modal id="modal1" ref="myModalRef" title="BootstrapVue">
+            <p class="my-4">Вы выйграли: {{data.item.item}} X{{data.count}}</p>
         </b-modal>
     </div>
 </template>
@@ -26,19 +26,27 @@
         },
         data: function(){
             return {
-                errors: []
+                errors: [],
+                data: {
+                    item: ''
+                }
             }
         },
         
         methods:{
             game(){
+                    
+                    var self = this;
                     axios.post(`/gamestart`, {   
                         game: 'start'                   
                     })
-                    .then(response => {})
+                    .then(response => {
+                        self.data = response.data;
+                        self.$refs.myModalRef.show()
+                    })
                     .catch(e => {
                         this.errors.push(e)
-                    })
+                    });
             }
         }
     }

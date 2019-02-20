@@ -1790,16 +1790,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      errors: []
+      errors: [],
+      data: {
+        item: ''
+      }
     };
   },
   methods: {
     game: function game() {
       var _this = this;
 
+      var self = this;
       axios.post("/gamestart", {
         game: 'start'
-      }).then(function (response) {}).catch(function (e) {
+      }).then(function (response) {
+        self.data = response.data;
+        self.$refs.myModalRef.show();
+      }).catch(function (e) {
         _this.errors.push(e);
       });
     }
@@ -57846,9 +57853,20 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("b-modal", { attrs: { id: "modal1", title: "BootstrapVue" } }, [
-        _c("p", { staticClass: "my-4" }, [_vm._v("Hello from modal!")])
-      ])
+      _c(
+        "b-modal",
+        { ref: "myModalRef", attrs: { id: "modal1", title: "BootstrapVue" } },
+        [
+          _c("p", { staticClass: "my-4" }, [
+            _vm._v(
+              "Вы выйграли: " +
+                _vm._s(_vm.data.item.item) +
+                " X" +
+                _vm._s(_vm.data.count)
+            )
+          ])
+        ]
+      )
     ],
     1
   )

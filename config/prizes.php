@@ -7,36 +7,59 @@
 */
 return [
     'data' => [
-        'money' => [
+        'Деньги' => [
 			'interval' => ['min' => 0.25, 'max' => 25],
-			'items' => [],
+			'items' => [
+				'Деньги' => [
+					'count' => 1000
+				]
+			],
 			'chance' => [
 				'byformule' => true,
 				'formule' => 'random',
-				'static' => 0.33
+				'static' => 0.2
 			]
 		],
         'good' => [
 			'interval' => ['min' => 1, 'max' => 1],
 			'items' => [
-				'pen' => 0.5,
-				'notebook' => 0.4,
-				'phone' => 0.05,
-				'laptop' => 0.04,
-				'auto' => 0.005
+				'Ручка' => [
+					'count' => 1000,
+					'chance' => 0.5
+				],
+				'Записная книжка' => [
+					'count' => 100,
+					'chance' => 0.4
+				],
+				'Телефон' => [
+					'count' => 10,
+					'chance' => 0.05
+				],
+				'Ноутбук' => [
+					'count' => 5,
+					'chance' =>  0.04
+				],
+				'Автомобиль' => [
+					'count' => 1,
+					'chance' =>  0.005
+				]
 			],
 			'chance' => [
 				'byformule' => false,
-				'static' => 0.33
+				'static' => 0.5
 			]
 		],
-        'point' => [
+        'Очки лояльности' => [
 			'interval' => ['min' => 1, 'max' => 250],
-			'items' => [],
+			'items' => [
+				'Очки лояльности' =>[
+					'count' => 'MAGIC'
+				]
+			],
 			'chance' => [
 				'byformule' => true,
 				'formule' => 'random',
-				'static' => 0.33
+				'static' => 0.5
 			]
 		],
     ],

@@ -17,7 +17,7 @@ class CreatePrizesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('prize');
-            $table->decimal('count', 12, 2);
+            $table->decimal('countp', 12, 2);
             $table->timestamps();
         });
     }

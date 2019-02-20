@@ -130,9 +130,14 @@ class RoulettController extends Controller
 		return $count;
 	}
 
-
+ 	/**
+	* Проверка соответствия типа шансов
+	* @int value  
+	* @return шанс 
+	*/
     private function checkDecimal($value)
 	{
+		//шанс должен быть меньше 1 и больше 0
 	    if ((int)$value == $value)
 	    {
 	        return 0;
@@ -144,17 +149,24 @@ class RoulettController extends Controller
 
 	    return strlen($value) - strrpos($value, '.') - 1;
 	}
-
+	/**
+	* Проверка наличия у нас разыгрываемого приза
+	* @array items [приз => шанс] список типов/призов с указанием шанса 
+	* @return приз 
+	*/
 	private function roulette($items)
 	{
+		//формируем шансы на получение определённого приза
 		$sumOfPercents = 0;
 		
 		foreach($items as $itemsPercent)
 		{
 			$sumOfPercents += $itemsPercent;
 		}
-
+		//проверяем получившийся шанс на соответствие типа
 		$decimals = $this->checkDecimal($sumOfPercents);
+
+		//формируем множетель
 		$multiplier = 1;
 		for ($i=0; $i < $decimals; $i++) 
 		{ 
@@ -165,6 +177,7 @@ class RoulettController extends Controller
 		$rand = rand(1, $sumOfPercents);
 		
 		$rangeStart = 1;
+		//Попадает ли приз в пул шансов rangeStart и rangeFinish, в случае первого совпадения возвращаем $itemKey типа/приза
 		foreach($items as $itemKey => $itemsPercent)
 		{
 		$rangeFinish = $rangeStart + ($itemsPercent * $multiplier);

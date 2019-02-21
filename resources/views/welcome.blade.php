@@ -64,7 +64,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height" id="app">
+        <div class="" id="app">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -89,7 +89,14 @@
 
 
             @auth
-            <roulett></roulett>
+
+            <div class="row justify-content-center">
+               <roulett></roulett>
+            </div>
+            <br/>
+            <div class="row justify-content-center">
+             <prizelist prizelist="{{json_encode($prizes_list)}}"></prizelist>
+            </div>
             @else
             <div class="content">
                 <div class="title m-b-md">
@@ -106,7 +113,6 @@
                 </div>
             </div>
             @endauth
-            
         </div>
         <script src="/js/app.js"></script>
     </body>

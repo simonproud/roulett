@@ -13,11 +13,10 @@
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-   		return view('welcome');
-	});
+    Route::get('/', 'HomeController@index');
 
    Route::post('/gamestart', 'RoulettController@gamestart');
+   Route::post('/convert', 'HomeController@convert');
 
 });
 

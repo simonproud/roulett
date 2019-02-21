@@ -6,6 +6,7 @@
 * @version 1.0
 */
 return [
+	'multiplier' => 3.25,
     'data' => [
         'Деньги' => [
 			'interval' => ['min' => 0.25, 'max' => 25],
